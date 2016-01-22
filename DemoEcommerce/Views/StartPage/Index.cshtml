@@ -1,0 +1,38 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@using DemoEcommerce.Models.Products
+
+@model DemoEcommerce.Models.Pages.StartPage
+
+@*catalog list*@
+<div class="container-fluid product-row">
+    <div class="row">
+        @foreach (var item in Model.Catelogs)
+        {
+            <span>@item.CatalogName</span> @:|
+        }
+    </div>
+</div>
+<h1>
+    @Html.PropertyFor(m => m.Header)
+</h1>
+
+<div class="container-fluid product-row">
+    <div class="row">
+        @Html.PropertyFor(x => x.ProductArea,
+        new { ChildrenCssClass = "jsProductTile product-row__tile col-xs-12 col-sm-6 col-lg-4" })
+    </div>
+</div>
+
+@*<div class="container-fluid">
+    <div class=" row">
+        @foreach (var tag in Model.ProductArea.FilteredItems.OfType<MyProduct>())
+        {
+            <div class="col-lg-3">
+                <div>
+                    Made in: @tag.MadeIn
+                </div>
+            </div>
+        }
+    </div>
+</div>*@

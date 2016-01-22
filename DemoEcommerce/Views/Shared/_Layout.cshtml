@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Demo</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body style="padding-top: 10px">
+    
+    @Html.RenderEPiServerQuickNavigator()
+    <div class="mainBodyDemo container-fluid">
+        <div class="row" style="margin-bottom: 15px">
+            <div class="col-md-3">
+                <a href="@Url.ContentUrl(EPiServer.Core.ContentReference.StartPage)">
+                    <img height="30" src="~/Images/logo.jpg" class="img-circle" /> <span>Car eXchange</span>
+                </a>
+            </div>
+        </div>
+        @RenderBody()
+    </div>
+</body>
+</html>

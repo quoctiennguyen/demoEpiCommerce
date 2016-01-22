@@ -1,0 +1,10 @@
+﻿@using EPiServer.Core
+@using EPiServer.SpecializedProperties
+@model LinkItemCollection
+           
+<ul >
+    @foreach (var linkItem in Model ?? Enumerable.Empty<LinkItem>())
+    {
+        @*<li >@Html.ContentLink(linkItem)</li>*@
+    }
+</ul>

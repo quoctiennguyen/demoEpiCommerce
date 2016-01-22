@@ -1,0 +1,58 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+
+@model DemoEcommerce.Models.Pages.CheckoutPageViewModel
+<h1>
+    Checkout
+</h1>
+@if (Model.CartItems != null)
+{
+    <h2>Your Items: @Model.CartItems.Count()</h2>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cartItem in Model.CartItems)
+            {
+                <tr>
+                    <td><img height="50" src="@cartItem.ImageUrl" alt="Alternate Text" /></td>
+                    <td>@cartItem.DisplayName</td>
+                    <td>@cartItem.Price</td>
+                    <td>@cartItem.Quantity</td>
+                    <td><button class="btn btn-danger btn-sm">Remove</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Payment info</h3>
+    using (Html.BeginForm("Purchase", "CheckoutPage", FormMethod.Post, new { @data_UpdateUrl = Url.Action("Update", null, null) }))
+    {
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @foreach (var method in Model.PaymentMethodViewModels)
+                {
+                    <div class="radio">
+                        <label>
+                            <input type="radio" class="jsChangePayment" name="selectPayment" value="@method.Id" /> @method.FriendlyName
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success">Payment</button>
+            </div>
+        </div>
+    }
+}
